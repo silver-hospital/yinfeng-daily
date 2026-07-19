@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script>
+(function() {
+  var baseUrl = window.location.href.replace(/\/[^\/]*$/, '/');
+  document.addEventListener('DOMContentLoaded', function() {
+    var links = document.querySelectorAll('a[href]');
+    links.forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && !href.match(/^(https?:|mailto:|tel:|#|javascript:)/)) {
+        link.setAttribute('href', baseUrl + href);
+      }
+    });
+  });
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>银丰医院 2026年经营总览</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; padding: 12px; }
+.container { max-width: 1000px; margin: 0 auto; }
+.card { background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.card h2 { font-size: 15px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+th { background: #f8f9fa; font-weight: 600; color: #555; font-size: 12px; position: sticky; top: 0; }
+tr:hover { background: #f8f9fa; }
+a { color: #1a73e8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.up { color: #34a853; }
+.down { color: #ea4335; }
+.footer { text-align: center; font-size: 11px; color: #aaa; padding: 12px 0; }
+.chart-box { width: 100%; height: 300px; }
+.chart-box-sm { width: 100%; height: 280px; }
+.breadcrumb { font-size: 12px; color: #888; margin-bottom: 12px; }
+.breadcrumb a { color: #1a73e8; }
+@media (min-width: 601px) {
+  body { padding: 20px; }
+  .card { padding: 20px 24px; }
+  .card h2 { font-size: 16px; }
+  table { font-size: 13px; }
+  th, td { padding: 8px 12px; }
+}
+@media (max-width: 600px) {
+  .chart-box { height: 260px; }
+  .chart-box-sm { height: 240px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px 8px; }
+}
+
+.header { background: linear-gradient(135deg, #1a73e8, #4285f4); color: #fff; padding: 24px 20px; border-radius: 12px; margin-bottom: 16px; text-align: center; }
+.header h1 { font-size: 22px; font-weight: 700; }
+.header .sub { font-size: 13px; opacity: 0.85; margin-top: 6px; }
+.kpi-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.kpi-card { flex: 1 1 calc(50% - 5px); min-width: 0; background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); text-align: center; }
+.kpi-card .label { font-size: 11px; color: #888; margin-bottom: 4px; }
+.kpi-card .value { font-size: 22px; font-weight: 700; color: #1a73e8; }
+.kpi-card .unit { font-size: 12px; color: #888; }
+.month-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+.month-card { border-radius: 10px; padding: 14px 8px; text-align: center; transition: transform .2s; }
+.month-card.active { background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.06); cursor: pointer; }
+.month-card.active:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.month-card.active a { text-decoration: none; color: inherit; display: block; }
+.month-card.inactive { background: #f0f0f0; color: #bbb; }
+.month-num { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.month-card.active .month-num { color: #1a73e8; }
+.month-rev { font-size: 13px; color: #333; margin-bottom: 2px; }
+.month-card.inactive .month-rev { color: #bbb; }
+.month-status { font-size: 10px; }
+.month-card.active .month-status { color: #34a853; }
+.month-card.inactive .month-status { color: #ccc; }
+.chart-row { display: flex; flex-wrap: wrap; gap: 14px; }
+.chart-row .card { flex: 1 1 100%; margin-bottom: 0; }
+@media (min-width: 601px) {
+  .kpi-card { flex: 1; padding: 18px 20px; }
+  .kpi-card .value { font-size: 26px; }
+  .month-grid { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .header h1 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>🏥 银丰医院 2026年经营总览</h1>
+  <div class="sub">数据截至 2026年7月18日</div>
+</div>
+
+<div class="breadcrumb">📍 首页 &gt; 2026年</div>
+
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="label">年度累计营收</div>
+    <div class="value">6718.08<span class="unit"> 万</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">月均营收</div>
+    <div class="value">959.73<span class="unit"> 万</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">日均营收</div>
+    <div class="value">33.76<span class="unit"> 万</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">已完成月数</div>
+    <div class="value">7<span class="unit"> / 12 月</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📈 月度营收趋势（1-7月）</h2>
+  <div id="monthTrend" class="chart-box"></div>
+</div>
+
+<div class="card">
+  <h2>📅 月度导航</h2>
+  <div class="month-grid">
+    
+        <div class="month-card active">
+          <a href="01.html">
+            <div class="month-num">1月</div>
+            <div class="month-rev">680.1万</div>
+            <div class="month-status">✓ 已出</div>
+          </a>
+        </div>
+        <div class="month-card active">
+          <a href="02.html">
+            <div class="month-num">2月</div>
+            <div class="month-rev">617.56万</div>
+            <div class="month-status">✓ 已出</div>
+          </a>
+        </div>
+        <div class="month-card active">
+          <a href="03.html">
+            <div class="month-num">3月</div>
+            <div class="month-rev">1208.38万</div>
+            <div class="month-status">✓ 已出</div>
+          </a>
+        </div>
+        <div class="month-card active">
+          <a href="04.html">
+            <div class="month-num">4月</div>
+            <div class="month-rev">1183.37万</div>
+            <div class="month-status">✓ 已出</div>
+          </a>
+        </div>
+        <div class="month-card active">
+          <a href="05.html">
+            <div class="month-num">5月</div>
+            <div class="month-rev">990.87万</div>
+            <div class="month-status">✓ 已出</div>
+          </a>
+        </div>
+        <div class="month-card active">
+          <a href="06.html">
+            <div class="month-num">6月</div>
+            <div class="month-rev">1078.7万</div>
+            <div class="month-status">✓ 已出</div>
+          </a>
+        </div>
+        <div class="month-card active">
+          <a href="07.html">
+            <div class="month-num">7月</div>
+            <div class="month-rev">959.1万</div>
+            <div class="month-status">✓ 已出</div>
+          </a>
+        </div>
+        <div class="month-card inactive">
+          <span>
+            <div class="month-num">8月</div>
+            <div class="month-rev">—</div>
+            <div class="month-status">未出</div>
+          </span>
+        </div>
+        <div class="month-card inactive">
+          <span>
+            <div class="month-num">9月</div>
+            <div class="month-rev">—</div>
+            <div class="month-status">未出</div>
+          </span>
+        </div>
+        <div class="month-card inactive">
+          <span>
+            <div class="month-num">10月</div>
+            <div class="month-rev">—</div>
+            <div class="month-status">未出</div>
+          </span>
+        </div>
+        <div class="month-card inactive">
+          <span>
+            <div class="month-num">11月</div>
+            <div class="month-rev">—</div>
+            <div class="month-status">未出</div>
+          </span>
+        </div>
+        <div class="month-card inactive">
+          <span>
+            <div class="month-num">12月</div>
+            <div class="month-rev">—</div>
+            <div class="month-status">未出</div>
+          </span>
+        </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📊 上半年月度数据一览</h2>
+  <div style="overflow-x:auto">
+  <table>
+    <thead>
+      <tr><th>月份</th><th>营收(万)</th><th>门诊人次</th><th>住院人次</th><th>手术台次</th><th>日均(万)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="01.html">1月</a> <span style="font-size:10px;color:#e37400">🌱爬坡期</span></td>
+        <td><b>680.1</b></td>
+        <td>4,830</td>
+        <td>473</td>
+        <td>41</td>
+        <td>21.94</td>
+      </tr>
+      <tr>
+        <td><a href="02.html">2月</a> <span style="font-size:10px;color:#e37400">🌱爬坡期</span></td>
+        <td><b>617.56</b></td>
+        <td>3,711</td>
+        <td>456</td>
+        <td>27</td>
+        <td>22.06</td>
+      </tr>
+      <tr>
+        <td><a href="03.html">3月</a> <span style="font-size:10px;color:#e37400">🌱爬坡期</span></td>
+        <td><b>1208.38</b></td>
+        <td>6,635</td>
+        <td>661</td>
+        <td>55</td>
+        <td>38.98</td>
+      </tr>
+      <tr>
+        <td><a href="04.html">4月</a> <span style="font-size:10px;color:#e37400">🌱爬坡期</span></td>
+        <td><b>1183.37</b></td>
+        <td>6,741</td>
+        <td>717</td>
+        <td>93</td>
+        <td>39.45</td>
+      </tr>
+      <tr>
+        <td><a href="05.html">5月</a></td>
+        <td><b>990.87</b></td>
+        <td>7,346</td>
+        <td>749</td>
+        <td>100</td>
+        <td>31.96</td>
+      </tr>
+      <tr>
+        <td><a href="06.html">6月</a></td>
+        <td><b>1078.7</b></td>
+        <td>8,606</td>
+        <td>797</td>
+        <td>114</td>
+        <td>35.96</td>
+      </tr>
+      <tr style="background:#e8f0fe">
+        <td><a href="07.html">7月</a> <span style="font-size:10px;color:#1a73e8">📊7月18日</span></td>
+        <td><b>959.1</b></td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>53.28</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="footer">银丰医院经营日报系统 v2 | 数据更新：2026年7月18日</div>
+
+</div>
+
+<script>
+var chart = echarts.init(document.getElementById('monthTrend'));
+var months = ['1月','2月','3月','4月','5月','6月','7月\n(截至18日)'];
+var revs = [680.1, 617.56, 1208.38, 1183.37, 990.87, 1078.7, 959.1];
+var target = [null, null, null, null, null, null, 1300];
+chart.setOption({
+  tooltip: { trigger: 'axis', formatter: function(p) { return p[0].name + '<br/>' + p.map(function(s){ return s.marker + s.seriesName + ': ' + (s.value ? s.value+'万' : '—'); }).join('<br/>'); } },
+  legend: { data: ['月度营收', '月度目标'], top: 5 },
+  grid: { left: 50, right: 30, bottom: 35, top: 45 },
+  xAxis: { type: 'category', data: months },
+  yAxis: { type: 'value', name: '万元' },
+  series: [
+    { name: '月度营收', type: 'bar', data: revs,
+      itemStyle: { 
+        borderRadius: [4,4,0,0],
+        color: function(p) { return p.dataIndex === 6 ? '#4285f4' : '#1a73e8'; }
+      },
+      barMaxWidth: 40,
+      label: { show: true, position: 'top', fontSize: 11, formatter: function(p){ return p.value+'万'; } }
+    },
+    { name: '月度目标', type: 'bar', data: target,
+      itemStyle: { borderRadius: [4,4,0,0], color: 'rgba(234,67,53,0.3)' },
+      barMaxWidth: 40,
+      label: { show: true, position: 'top', fontSize: 11, color: '#ea4335', formatter: '1300万' }
+    }
+  ]
+});
+</script>
+</body>
+</html>

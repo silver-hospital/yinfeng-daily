@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script>
+(function() {
+  var baseUrl = window.location.href.replace(/\/[^\/]*$/, '/');
+  document.addEventListener('DOMContentLoaded', function() {
+    var links = document.querySelectorAll('a[href]');
+    links.forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && !href.match(/^(https?:|mailto:|tel:|#|javascript:)/)) {
+        link.setAttribute('href', baseUrl + href);
+      }
+    });
+  });
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
+<title>银丰医院经营日报 | 2026年7月15日</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; padding: 12px; }
+.container { max-width: 1000px; margin: 0 auto; }
+.header { background: linear-gradient(135deg, #1a73e8, #4285f4); color: #fff; padding: 18px 20px; border-radius: 12px; margin-bottom: 14px; position: relative; }
+.header h1 { font-size: 20px; font-weight: 600; }
+.header .meta { font-size: 12px; opacity: 0.85; margin-top: 4px; }
+.nav-back { position: absolute; top: 14px; right: 16px; display: inline-flex; align-items: center; gap: 4px; padding: 5px 12px; background: rgba(255,255,255,0.2); border-radius: 6px; color: #fff; text-decoration: none; font-size: 12px; }
+.nav-back:hover { background: rgba(255,255,255,0.35); }
+.breadcrumb { font-size: 12px; color: #888; margin-bottom: 8px; }
+.breadcrumb a { color: #1a73e8; text-decoration: none; }
+.nav-row { display: flex; justify-content: space-between; margin-bottom: 14px; }
+.nav-link { display: inline-block; padding: 6px 14px; background: #fff; border-radius: 8px; color: #1a73e8; text-decoration: none; font-size: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.nav-link.disabled { color: #ccc; pointer-events: none; }
+.kpi-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.kpi-card { flex: 1 1 calc(50% - 5px); min-width: 0; background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.kpi-card .label { font-size: 11px; color: #888; margin-bottom: 3px; }
+.kpi-card .value { font-size: 22px; font-weight: 700; color: #1a73e8; }
+.kpi-card .sub { font-size: 11px; color: #666; margin-top: 3px; }
+.kpi-card .up { color: #34a853; }
+.kpi-card .down { color: #ea4335; }
+.card { background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.card h2 { font-size: 15px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+.chart-box { width: 100%; height: 300px; }
+.chart-box-sm { width: 100%; height: 280px; }
+.chart-row { display: flex; flex-wrap: wrap; gap: 14px; }
+.chart-row .card { flex: 1 1 calc(50% - 7px); min-width: 0; margin-bottom: 0; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 700px; }
+th, td { padding: 7px 10px; text-align: left; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+th { background: #f8f9fa; font-weight: 600; color: #555; font-size: 12px; position: sticky; top: 0; }
+tr:hover { background: #f8f9fa; }
+.alert-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+.alert-item { flex: 1 1 100%; padding: 10px 14px; border-radius: 8px; font-size: 12px; line-height: 1.5; }
+.alert-red { background: #fce8e6; border-left: 3px solid #d93025; }
+.alert-green { background: #e6f4ea; border-left: 3px solid #1e8e3e; }
+.alert-yellow { background: #fef7e0; border-left: 3px solid #e37400; }
+.footer { text-align: center; font-size: 11px; color: #aaa; padding: 12px 0; }
+.scroll-hint { display: none; font-size: 11px; color: #999; text-align: right; margin-bottom: 4px; }
+@media (min-width: 601px) {
+  body { padding: 20px; }
+  .header { padding: 24px 32px; margin-bottom: 20px; }
+  .header h1 { font-size: 22px; }
+  .kpi-row { gap: 16px; margin-bottom: 20px; }
+  .kpi-card { flex: 1; padding: 18px 20px; }
+  .kpi-card .label { font-size: 12px; }
+  .kpi-card .value { font-size: 26px; }
+  .kpi-card .sub { font-size: 12px; }
+  .card { padding: 20px 24px; margin-bottom: 20px; }
+  .chart-box { height: 320px; }
+  table { font-size: 13px; }
+  .alert-item { flex: 1; font-size: 13px; }
+}
+@media (max-width: 600px) {
+  .kpi-card .value { font-size: 20px; }
+  .chart-box { height: 260px; }
+  .chart-box-sm { height: 240px; }
+  .scroll-hint { display: block; }
+  table { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <a href="index.html" class="nav-back">← 总览</a>
+  <h1>银丰医院经营日报</h1>
+  <div class="meta">2026年7月15日（周三）</div>
+</div>
+
+<div class="breadcrumb"><a href="index.html">首页</a> &gt; <a href="index.html">2026年</a> &gt; <a href="07.html">7月</a> &gt; 7月15日</div>
+
+<div class="nav-row">
+  <a href="0714.html" class="nav-link">← 前一天</a>
+  <a href="0716.html" class="nav-link">后一天 →</a>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="label">今日营收</div>
+    <div class="value">38.49<span style="font-size:14px;color:#888">万</span></div>
+    <div class="sub">目标41.94万 <span class="down">-3.45万</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">7月累计</div>
+    <div class="value">786.9<span style="font-size:14px;color:#888">万</span></div>
+    <div class="sub">目标1300万 | 达成 <span class="up">60.53%</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">时间进度</div>
+    <div class="value">48.4<span style="font-size:14px;color:#888">%</span></div>
+    <div class="sub">进度差 <span class="up">+12.13pp ✅ 领先</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">日均营收</div>
+    <div class="value">41.94<span style="font-size:14px;color:#888">万</span></div>
+    <div class="sub">目标41.94万</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📈 营收趋势</h2>
+  <div id="trendChart" class="chart-box"></div>
+</div>
+
+<div class="card">
+  <h2>🩺 健管中心营收趋势</h2>
+  <div id="jianguanChart" class="chart-box" style="height:220px"></div>
+</div>
+
+<div class="card">
+  <h2>🏥 科室营收 TOP10（当日）</h2>
+  <div id="deptChart" class="chart-box"></div>
+</div>
+
+<div class="chart-row">
+  <div class="card">
+    <h2>💊 当月累计收入结构</h2>
+    <div id="structChart" class="chart-box-sm"></div>
+  </div>
+  <div class="card">
+    <h2>📊 月度达成进度</h2>
+    <div id="progressChart" class="chart-box-sm"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>科室营收明细 TOP10（本月累计）</h2>
+  <div class="scroll-hint">← 左右滑动查看完整表格 →</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>科室</th><th>当日营收(万)</th><th>当日占比</th><th>累计(万)</th><th>累计占比</th><th>药耗占比</th><th>一句话总结</th></tr>
+      </thead>
+      <tbody>
+    <tr><td>1</td><td>腋臭项目</td><td><b>2.77</b></td><td>7.2%</td><td><b>133.93</b></td><td>17.02%</td><td>24.85%</td><td><span style='background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:4px;font-size:11px'>治疗收入为主，技术含量高</span></td></tr>
+    <tr><td>2</td><td>神经肿瘤科</td><td><b>7.71</b></td><td>20.03%</td><td><b>123.6</b></td><td>15.71%</td><td>78.94%</td><td><span style='background:#fef7e0;color:#e37400;padding:2px 6px;border-radius:4px;font-size:11px'>当日药耗占比78.94%</span></td></tr>
+    <tr><td>3</td><td>骨科</td><td><b>3.03</b></td><td>7.87%</td><td><b>61.4</b></td><td>7.8%</td><td>38.93%</td><td><span style='background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:4px;font-size:11px'>治疗收入为主，技术含量高</span></td></tr>
+    <tr><td>4</td><td>中医康复科</td><td><b>3.97</b></td><td>10.31%</td><td><b>57.61</b></td><td>7.32%</td><td>11.2%</td><td><span style='background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:4px;font-size:11px'>治疗收入为主，技术含量高</span></td></tr>
+    <tr><td>5</td><td>神经内科</td><td><b>4.0</b></td><td>10.39%</td><td><b>39.33</b></td><td>5.0%</td><td>17.07%</td><td><span style='background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:4px;font-size:11px'>治疗收入为主，技术含量高</span></td></tr>
+    <tr><td>6</td><td>急诊科</td><td><b>1.99</b></td><td>5.17%</td><td><b>38.03</b></td><td>4.83%</td><td>9.08%</td><td>检查为主(64.5%)</td></tr>
+    <tr><td>7</td><td>泌尿外科</td><td><b>0.15</b></td><td>0.39%</td><td><b>25.33</b></td><td>3.22%</td><td>9.42%</td><td>检查为主(68.94%)</td></tr>
+    <tr><td>8</td><td>肾内科</td><td><b>1.71</b></td><td>4.44%</td><td><b>24.12</b></td><td>3.07%</td><td>27.87%</td><td><span style='background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:4px;font-size:11px'>治疗收入为主，技术含量高</span></td></tr>
+    <tr><td>9</td><td>中医康复二组</td><td><b>1.61</b></td><td>4.18%</td><td><b>23.55</b></td><td>2.99%</td><td>6.03%</td><td><span style='background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:4px;font-size:11px'>治疗收入为主，技术含量高</span></td></tr>
+    <tr><td>10</td><td>心内科</td><td><b>1.99</b></td><td>5.17%</td><td><b>20.5</b></td><td>2.61%</td><td>17.88%</td><td>检查为主(64.16%)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚠️ 异常预警</h2>
+  <div class="alert-row">
+    
+    <div class="alert-item alert-yellow">
+      <b>腋臭项目</b>：累计营收133.93万，为当月最大贡献科室（占比17.02%）
+    </div>
+    <div class="alert-item alert-green">
+      <b>月度进度</b>：达成进度60.53%超过时间进度48.4%，领先12.13pp ✅
+    </div>
+  </div>
+</div>
+
+<div class="footer">数据来源：HIS系统 + WPS健管中心报表 | 报告时间：2026年7月15日</div>
+
+</div>
+
+<script>
+function isMobile() { return window.innerWidth <= 600; }
+
+var trendChart = echarts.init(document.getElementById('trendChart'));
+trendChart.setOption({
+  tooltip: { trigger: 'axis', formatter: function(p) { return p[0].name + '<br/>' + p.map(function(s){ return s.marker + s.seriesName + ': ' + s.value + '万'; }).join('<br/>'); } },
+  legend: { data: ["日营收", "目标日均", "均值"], top: 5, textStyle: { fontSize: isMobile() ? 10 : 12 } },
+  grid: { left: isMobile() ? 40 : 50, right: isMobile() ? 15 : 30, bottom: 35, top: 45 },
+  xAxis: { type: 'category', data: ["7/1", "7/2", "7/3", "7/4", "7/5", "7/6", "7/7", "7/8", "7/9", "7/10", "7/11", "7/12", "7/13", "7/14", "7/15"], axisLabel: { fontSize: isMobile() ? 10 : 11 } },
+  yAxis: { type: 'value', name: '万元', min: 26, max: 60, axisLabel: { formatter: '{value}', fontSize: isMobile() ? 10 : 11 } },
+  series: [
+    { name: '日营收', type: 'line', data: [46.27, 41.25, 38.32, 38.37, 37.23, 55.0, 54.57, 47.81, 42.06, 49.9, 48.62, 31.93, 51.87, 53.77, 38.49],
+      smooth: true, symbol: 'circle', symbolSize: isMobile() ? 6 : 8,
+      lineStyle: { width: 3, color: '#1a73e8' },
+      itemStyle: { color: '#1a73e8' },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(26,115,232,0.25)' }, { offset: 1, color: 'rgba(26,115,232,0.02)' }]) },
+      markPoint: { data: [{ type: 'max', name: '最高' }, { type: 'min', name: '最低' }], symbolSize: isMobile() ? 32 : 40, label: { fontSize: 9 } }
+    },
+    { name: '目标日均', type: 'line', data: [41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94],
+      lineStyle: { width: 2, type: 'dashed', color: '#ea4335' }, itemStyle: { color: '#ea4335' }, symbol: 'none'
+    },
+    { name: '均值', type: 'line', data: [41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94],
+      lineStyle: { width: 1.5, type: 'dotted', color: '#34a853' }, itemStyle: { color: '#34a853' }, symbol: 'none'
+    }
+  ]
+});
+
+var jianguanChart = echarts.init(document.getElementById('jianguanChart'));
+jianguanChart.setOption({
+  tooltip: { trigger: 'axis' },
+  grid: { left: isMobile() ? 45 : 55, right: isMobile() ? 15 : 30, bottom: 35, top: 25 },
+  xAxis: { type: 'category', data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], axisLabel: { fontSize: isMobile() ? 10 : 11 } },
+  yAxis: { type: 'value', name: '万元', axisLabel: { formatter: '{value}', fontSize: isMobile() ? 10 : 11 } },
+  series: [
+    { name: '健管', type: 'bar', data: [1.13, 0.93, 1.1, 1.2, 0.68, 0.31, 1.64, 2.1, 1.58, 2.08, 1.84, 1.42, 0.06, 2.07, 1.69],
+      itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#ce93d8' }, { offset: 1, color: '#9c27b0' }]), borderRadius: [4, 4, 0, 0] },
+      barMaxWidth: 30,
+      label: { show: !isMobile(), position: 'top', fontSize: 10, color: '#ce93d8', formatter: function(p) { return p.value.toFixed(2); } }
+    }
+  ]
+});
+
+var deptChart = echarts.init(document.getElementById('deptChart'));
+deptChart.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: isMobile() ? 80 : 100, right: isMobile() ? 50 : 40, bottom: 20, top: 10 },
+  xAxis: { type: 'value', name: '万元', axisLabel: { formatter: '{value}', fontSize: isMobile() ? 10 : 11 } },
+  yAxis: { type: 'category', data: ["肾内科", "重症医学科", "急诊科", "心内科", "消化内科", "腋臭项目", "骨科", "中医康复科", "神经内科", "神经肿瘤科"], axisLabel: { fontSize: isMobile() ? 10 : 12 } },
+  series: [{
+    type: 'bar', barWidth: isMobile() ? 14 : 18,
+    data: [1.71, 1.82, 1.99, 1.99, 2.03, 2.77, 3.03, 3.97, 4.0, 7.71],
+    itemStyle: {
+      borderRadius: [0, 4, 4, 0],
+      color: function(p) {
+        var colors = ['#0d47a1','#174ea6','#1967d2','#1a73e8','#1a73e8','#1a73e8','#4285f4','#669df6','#8ab4f8','#aecbfa'];
+        return colors[p.dataIndex] || '#1a73e8';
+      }
+    },
+    label: { show: true, position: 'right', formatter: function(p) { return p.value + '万(' + (p.value / 38.49 * 100).toFixed(1) + '%)'; }, fontSize: isMobile() ? 9 : 11 }
+  }]
+});
+
+var structChart = echarts.init(document.getElementById('structChart'));
+structChart.setOption({
+  tooltip: { trigger: 'item', formatter: '{b}: {c}万 ({d}%)' },
+  legend: { 
+    orient: isMobile() ? 'horizontal' : 'vertical',
+    left: isMobile() ? 'center' : 'auto',
+    right: isMobile() ? 'auto' : 10,
+    bottom: isMobile() ? 5 : 'auto',
+    top: isMobile() ? 'auto' : 'center',
+    textStyle: { fontSize: isMobile() ? 10 : 11 }
+  },
+  series: [{
+    type: 'pie', radius: ['35%', '65%'], center: isMobile() ? ['50%', '40%'] : ['35%', '50%'],
+    label: { show: false },
+    data: [
+      { value: 156.18, name: '药品', itemStyle: { color: '#1a73e8' } },
+      { value: 120.85, name: '耗材', itemStyle: { color: '#4285f4' } },
+      { value: 80.6, name: '检查', itemStyle: { color: '#34a853' } },
+      { value: 124.39, name: '治疗', itemStyle: { color: '#fbbc04' } },
+      { value: 191.78, name: '其他', itemStyle: { color: '#9aa0a6' } }
+    ]
+  }]
+});
+
+
+var progressChart = echarts.init(document.getElementById('progressChart'));
+progressChart.setOption({
+  series: [
+    { type: 'gauge', startAngle: 200, endAngle: -20, min: 0, max: 100,
+      radius: '90%', center: ['50%', '60%'],
+      pointer: { show: false },
+      progress: { show: true, overlap: false, roundCap: true, clip: false,
+        itemStyle: { color: '#1a73e8' }
+      },
+      axisLine: { lineStyle: { width: 18, color: [[1, '#e8eaed']] } },
+      axisTick: { show: false }, splitLine: { show: false },
+      axisLabel: { show: false },
+      detail: { show: false },
+      data: [{ value: 60.53 }]
+    },
+    { type: 'gauge', startAngle: 200, endAngle: -20, min: 0, max: 100,
+      radius: '90%', center: ['50%', '60%'],
+      pointer: { show: false },
+      progress: { show: true, overlap: false, roundCap: true, clip: false,
+        itemStyle: { color: '#34a853' }
+      },
+      axisLine: { lineStyle: { width: 10, color: [[1, '#e8eaed']] } },
+      axisTick: { show: false }, splitLine: { show: false },
+      axisLabel: { show: false },
+      detail: { fontSize: 20, fontWeight: 'bold', offsetCenter: [0, '10%'],
+        formatter: function(v) { return ''; }
+      },
+      data: [{ value: 60.53 }]
+    }
+  ],
+  graphic: [
+    { type: 'text', left: 'center', top: '30%',
+      style: { text: '达成 60.53%', fontSize: isMobile() ? 14 : 16, fontWeight: 'bold', fill: '#1a73e8' } },
+    { type: 'text', left: 'center', top: '48%',
+      style: { text: '时间 48.4%', fontSize: isMobile() ? 11 : 12, fill: '#888' } }
+  ]
+});
+</script>
+</body>
+</html>

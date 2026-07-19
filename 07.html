@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script>
+(function() {
+  var baseUrl = window.location.href.replace(/\/[^\/]*$/, '/');
+  document.addEventListener('DOMContentLoaded', function() {
+    var links = document.querySelectorAll('a[href]');
+    links.forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && !href.match(/^(https?:|mailto:|tel:|#|javascript:)/)) {
+        link.setAttribute('href', baseUrl + href);
+      }
+    });
+  });
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>银丰医院 7月经营汇总</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; padding: 12px; }
+.container { max-width: 1000px; margin: 0 auto; }
+.card { background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.card h2 { font-size: 15px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+th { background: #f8f9fa; font-weight: 600; color: #555; font-size: 12px; position: sticky; top: 0; }
+tr:hover { background: #f8f9fa; }
+a { color: #1a73e8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.up { color: #34a853; }
+.down { color: #ea4335; }
+.footer { text-align: center; font-size: 11px; color: #aaa; padding: 12px 0; }
+.chart-box { width: 100%; height: 300px; }
+.chart-box-sm { width: 100%; height: 280px; }
+.breadcrumb { font-size: 12px; color: #888; margin-bottom: 12px; }
+.breadcrumb a { color: #1a73e8; }
+@media (min-width: 601px) {
+  body { padding: 20px; }
+  .card { padding: 20px 24px; }
+  .card h2 { font-size: 16px; }
+  table { font-size: 13px; }
+  th, td { padding: 8px 12px; }
+}
+@media (max-width: 600px) {
+  .chart-box { height: 260px; }
+  .chart-box-sm { height: 240px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px 8px; }
+}
+
+.header { background: linear-gradient(135deg, #1a73e8, #4285f4); color: #fff; padding: 18px 20px; border-radius: 12px; margin-bottom: 14px; position: relative; }
+.header h1 { font-size: 20px; font-weight: 600; }
+.header .meta { font-size: 12px; opacity: 0.85; margin-top: 4px; }
+.nav-back { position: absolute; top: 14px; right: 16px; display: inline-flex; align-items: center; gap: 4px; padding: 5px 12px; background: rgba(255,255,255,0.2); border-radius: 6px; color: #fff; text-decoration: none; font-size: 12px; }
+.nav-back:hover { background: rgba(255,255,255,0.35); }
+.nav-row { display: flex; justify-content: space-between; margin-bottom: 14px; }
+.nav-link { display: inline-block; padding: 6px 14px; background: #fff; border-radius: 8px; color: #1a73e8; text-decoration: none; font-size: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.nav-link.disabled { color: #ccc; pointer-events: none; }
+.kpi-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.kpi-card { flex: 1 1 calc(50% - 5px); min-width: 0; background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); text-align: center; }
+.kpi-card .label { font-size: 11px; color: #888; margin-bottom: 4px; }
+.kpi-card .value { font-size: 22px; font-weight: 700; color: #1a73e8; }
+.kpi-card .unit { font-size: 12px; color: #888; }
+.kpi-card .up { color: #34a853; }
+.kpi-card .down { color: #ea4335; }
+.scroll-wrap { overflow-x: auto; }
+@media (min-width: 601px) {
+  .kpi-card { flex: 1; padding: 18px 20px; }
+  .kpi-card .value { font-size: 26px; }
+  .header h1 { font-size: 22px; }
+}
+@media (max-width: 600px) {
+  .kpi-card .value { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <a href="index.html" class="nav-back">← 年度总览</a>
+  <h1>银丰医院 7月经营汇总</h1>
+  <div class="meta">2026年7月 | 截至7月18日（共18天）</div>
+</div>
+
+<div class="breadcrumb"><a href="index.html">首页</a> &gt; <a href="index.html">2026年</a> &gt; 7月</div>
+
+<div class="nav-row">
+  <a href="06.html" class="nav-link">← 6月</a>
+  <span class="nav-link disabled">已是最新月份</span>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="label">7月累计营收</div>
+    <div class="value">959.1<span class="unit"> 万</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">月度目标</div>
+    <div class="value">1300<span class="unit"> 万</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">达成率</div>
+    <div class="value">73.8<span class="unit"> %</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="label">日均营收</div>
+    <div class="value">53.28<span class="unit"> 万</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📈 累计营收趋势</h2>
+  <div id="cumChart" class="chart-box"></div>
+</div>
+
+<div class="card">
+  <h2>📊 每日营收趋势</h2>
+  <div id="dailyChart" class="chart-box"></div>
+</div>
+
+<div class="card">
+  <h2>📋 每日数据明细</h2>
+  <div class="scroll-wrap">
+  <table>
+    <thead>
+      <tr><th>日期</th><th>日营收(万)</th><th>累计(万)</th><th>达成率</th><th>时间进度</th><th>差距</th></tr>
+    </thead>
+    <tbody>
+    <tr><td><a href="0701.html">7/01 周三</a></td><td>46.27</td><td>157.71</td><td>12.13%</td><td>3.2%</td><td><span class='up'>✅+8.93pp</span></td></tr>
+    <tr><td><a href="0702.html">7/02 周四</a></td><td>41.25</td><td>198.96</td><td>15.3%</td><td>6.5%</td><td><span class='up'>✅+8.8pp</span></td></tr>
+    <tr><td><a href="0703.html">7/03 周五</a></td><td>38.32</td><td>237.28</td><td>18.25%</td><td>9.7%</td><td><span class='up'>✅+8.55pp</span></td></tr>
+    <tr><td><a href="0704.html">7/04 周六</a></td><td>38.37</td><td>275.65</td><td>21.2%</td><td>12.9%</td><td><span class='up'>✅+8.3pp</span></td></tr>
+    <tr><td><a href="0705.html">7/05 周日</a></td><td>37.23</td><td>312.88</td><td>24.07%</td><td>16.1%</td><td><span class='up'>✅+7.97pp</span></td></tr>
+    <tr><td><a href="0706.html">7/06 周一</a></td><td>55.0</td><td>367.88</td><td>28.3%</td><td>19.4%</td><td><span class='up'>✅+8.9pp</span></td></tr>
+    <tr><td><a href="0707.html">7/07 周二</a></td><td>54.57</td><td>422.45</td><td>32.5%</td><td>22.6%</td><td><span class='up'>✅+9.9pp</span></td></tr>
+    <tr><td><a href="0708.html">7/08 周三</a></td><td>47.81</td><td>470.26</td><td>36.17%</td><td>25.8%</td><td><span class='up'>✅+10.37pp</span></td></tr>
+    <tr><td><a href="0709.html">7/09 周四</a></td><td>42.06</td><td>512.32</td><td>39.41%</td><td>29%</td><td><span class='up'>✅+10.41pp</span></td></tr>
+    <tr><td><a href="0710.html">7/10 周五</a></td><td>49.9</td><td>562.22</td><td>43.25%</td><td>32.3%</td><td><span class='up'>✅+10.95pp</span></td></tr>
+    <tr><td><a href="0711.html">7/11 周六</a></td><td>48.62</td><td>610.84</td><td>46.99%</td><td>35.5%</td><td><span class='up'>✅+11.49pp</span></td></tr>
+    <tr><td><a href="0712.html">7/12 周日</a></td><td>31.93</td><td>642.77</td><td>49.44%</td><td>38.7%</td><td><span class='up'>✅+10.74pp</span></td></tr>
+    <tr><td><a href="0713.html">7/13 周一</a></td><td>51.87</td><td>694.64</td><td>53.43%</td><td>41.9%</td><td><span class='up'>✅+11.53pp</span></td></tr>
+    <tr><td><a href="0714.html">7/14 周二</a></td><td>53.77</td><td>748.41</td><td>57.57%</td><td>45.2%</td><td><span class='up'>✅+12.37pp</span></td></tr>
+    <tr><td><a href="0715.html">7/15 周三</a></td><td>38.49</td><td>786.9</td><td>60.53%</td><td>48.4%</td><td><span class='up'>✅+12.13pp</span></td></tr>
+    <tr><td><a href="0716.html">7/16 周四</a></td><td>48.63</td><td>835.53</td><td>64.27%</td><td>51.6%</td><td><span class='up'>✅+12.67pp</span></td></tr>
+    <tr><td><a href="0717.html">7/17 周五</a></td><td>49.18</td><td>884.71</td><td>68.05%</td><td>54.8%</td><td><span class='up'>✅+13.25pp</span></td></tr>
+    <tr><td><a href="0718.html">7/18 周六</a></td><td>74.39</td><td>959.1</td><td>73.78%</td><td>58.1%</td><td><span class='up'>✅+15.68pp</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🏥 7月科室累计营收 TOP10</h2>
+  <div id="deptChart" class="chart-box"></div>
+</div>
+
+<div class="card">
+  <h2>💊 7月累计收入结构</h2>
+  <div id="structChart" class="chart-box-sm"></div>
+</div>
+
+<div class="footer">银丰医院经营日报系统 v2 | 数据来源：HIS系统 + WPS健管中心报表</div>
+
+</div>
+
+<script>
+function isMobile() { return window.innerWidth <= 600; }
+
+// 累计趋势图
+var cumChart = echarts.init(document.getElementById('cumChart'));
+cumChart.setOption({
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['累计营收', '月度目标'], top: 5 },
+  grid: { left: 50, right: 30, bottom: 35, top: 45 },
+  xAxis: { type: 'category', data: ["7/1", "7/2", "7/3", "7/4", "7/5", "7/6", "7/7", "7/8", "7/9", "7/10", "7/11", "7/12", "7/13", "7/14", "7/15", "7/16", "7/17", "7/18"] },
+  yAxis: { type: 'value', name: '万元' },
+  series: [
+    { name: '累计营收', type: 'line', data: [157.71, 198.96, 237.28, 275.65, 312.88, 367.88, 422.45, 470.26, 512.32, 562.22, 610.84, 642.77, 694.64, 748.41, 786.9, 835.53, 884.71, 959.1], smooth: true,
+      lineStyle: { width: 3, color: '#1a73e8' }, itemStyle: { color: '#1a73e8' },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(26,115,232,0.2)'},{offset:1,color:'rgba(26,115,232,0.02)'}]) },
+      label: { show: !isMobile(), fontSize: 10, color: '#1a73e8' }
+    },
+    { name: '月度目标', type: 'line', data: [1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300],
+      lineStyle: { width: 2, type: 'dashed', color: '#ea4335' }, itemStyle: { color: '#ea4335' }, symbol: 'none'
+    }
+  ]
+});
+
+// 每日营收图
+var dailyChart = echarts.init(document.getElementById('dailyChart'));
+dailyChart.setOption({
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['日营收', '目标日均', '日均'], top: 5 },
+  grid: { left: 50, right: 30, bottom: 35, top: 45 },
+  xAxis: { type: 'category', data: ["7/1", "7/2", "7/3", "7/4", "7/5", "7/6", "7/7", "7/8", "7/9", "7/10", "7/11", "7/12", "7/13", "7/14", "7/15", "7/16", "7/17", "7/18"] },
+  yAxis: { type: 'value', name: '万元' },
+  series: [
+    { name: '日营收', type: 'bar', data: [46.27, 41.25, 38.32, 38.37, 37.23, 55.0, 54.57, 47.81, 42.06, 49.9, 48.62, 31.93, 51.87, 53.77, 38.49, 48.63, 49.18, 74.39],
+      itemStyle: { borderRadius: [4,4,0,0], color: '#1a73e8' }, barMaxWidth: 30
+    },
+    { name: '目标日均', type: 'line', data: [41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94],
+      lineStyle: { width: 2, type: 'dashed', color: '#ea4335' }, itemStyle: { color: '#ea4335' }, symbol: 'none'
+    },
+    { name: '日均', type: 'line', data: [41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94, 41.94], smooth: true,
+      lineStyle: { width: 1.5, type: 'dotted', color: '#34a853' }, itemStyle: { color: '#34a853' }, symbol: 'none'
+    }
+  ]
+});
+
+// 科室TOP10
+var deptNames = ["健康管理中心", "中医康复二组", "肾内科", "泌尿外科", "急诊科", "中医康复科", "骨科", "神经内科", "神经肿瘤科", "腋臭项目"];
+var deptRevs = [27.07, 28.63, 29.48, 35.28, 42.11, 67.87, 70.66, 79.61, 150.93, 161.78];
+var deptChart = echarts.init(document.getElementById('deptChart'));
+deptChart.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: isMobile() ? 80 : 100, right: isMobile() ? 50 : 50, bottom: 10, top: 10 },
+  xAxis: { type: 'value', name: '万元' },
+  yAxis: { type: 'category', data: deptNames, axisLabel: { fontSize: isMobile() ? 10 : 12 } },
+  series: [{
+    type: 'bar', barWidth: isMobile() ? 14 : 18,
+    data: deptRevs,
+    itemStyle: {
+      borderRadius: [0, 4, 4, 0],
+      color: function(p) {
+        var colors = ['#0d47a1','#174ea1','#1967d2','#1a73e8','#1a73e8','#4285f4','#4285f4','#669df6','#8ab4f8','#aecbfa'];
+        return colors[p.dataIndex] || '#1a73e8';
+      }
+    },
+    label: { show: true, position: 'right', fontSize: isMobile() ? 9 : 11,
+      formatter: function(p) { return p.value + '万'; }
+    }
+  }]
+});
+
+// 收入结构
+var structChart = echarts.init(document.getElementById('structChart'));
+structChart.setOption({
+  tooltip: { trigger: 'item', formatter: '{b}: {c}万 ({d}%)' },
+  legend: { 
+    orient: isMobile() ? 'horizontal' : 'vertical',
+    left: isMobile() ? 'center' : 'auto',
+    right: isMobile() ? 'auto' : 10,
+    bottom: isMobile() ? 5 : 'auto',
+    top: isMobile() ? 'auto' : 'center',
+    textStyle: { fontSize: isMobile() ? 10 : 11 }
+  },
+  series: [{
+    type: 'pie', radius: ['35%', '65%'], center: isMobile() ? ['50%', '40%'] : ['35%', '50%'],
+    label: { show: false },
+    data: [
+      { value: 194.61, name: '药品', itemStyle: { color: '#1a73e8' } },
+      { value: 172.18, name: '耗材', itemStyle: { color: '#4285f4' } },
+      { value: 93.58, name: '检查', itemStyle: { color: '#34a853' } },
+      { value: 152.0, name: '治疗', itemStyle: { color: '#fbbc04' } },
+      { value: 233.62, name: '其他', itemStyle: { color: '#9aa0a6' } }
+    ]
+  }]
+});
+</script>
+</body>
+</html>
