@@ -97,15 +97,15 @@ a:hover { text-decoration: underline; }
 <div class="kpi-row">
   <div class="kpi-card">
     <div class="label">年度累计营收</div>
-    <div class="value">6718.08<span class="unit"> 万</span></div>
+    <div class="value">6606.64<span class="unit"> 万</span></div>
   </div>
   <div class="kpi-card">
     <div class="label">月均营收</div>
-    <div class="value">959.73<span class="unit"> 万</span></div>
+    <div class="value">943.81<span class="unit"> 万</span></div>
   </div>
   <div class="kpi-card">
     <div class="label">日均营收</div>
-    <div class="value">33.76<span class="unit"> 万</span></div>
+    <div class="value">33.2<span class="unit"> 万</span></div>
   </div>
   <div class="kpi-card">
     <div class="label">已完成月数</div>
@@ -167,7 +167,7 @@ a:hover { text-decoration: underline; }
         <div class="month-card active">
           <a href="07.html">
             <div class="month-num">7月</div>
-            <div class="month-rev">959.1万</div>
+            <div class="month-rev">847.66万</div>
             <div class="month-status">✓ 已出</div>
           </a>
         </div>
@@ -267,11 +267,11 @@ a:hover { text-decoration: underline; }
       </tr>
       <tr style="background:#e8f0fe">
         <td><a href="07.html">7月</a> <span style="font-size:10px;color:#1a73e8">📊7月18日</span></td>
-        <td><b>959.1</b></td>
+        <td><b>847.66</b></td>
         <td>—</td>
         <td>—</td>
         <td>—</td>
-        <td>53.28</td>
+        <td>47.09</td>
       </tr>
     </tbody>
   </table>
@@ -285,7 +285,7 @@ a:hover { text-decoration: underline; }
 <script>
 var chart = echarts.init(document.getElementById('monthTrend'));
 var months = ['1月','2月','3月','4月','5月','6月','7月\n(截至18日)'];
-var revs = [680.1, 617.56, 1208.38, 1183.37, 990.87, 1078.7, 959.1];
+var revs = [680.1, 617.56, 1208.38, 1183.37, 990.87, 1078.7, 847.66];
 var target = [null, null, null, null, null, null, 1300];
 chart.setOption({
   tooltip: { trigger: 'axis', formatter: function(p) { return p[0].name + '<br/>' + p.map(function(s){ return s.marker + s.seriesName + ': ' + (s.value ? s.value+'万' : '—'); }).join('<br/>'); } },
